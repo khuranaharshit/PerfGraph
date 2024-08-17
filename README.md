@@ -1,10 +1,9 @@
-### PerfGraph: **Algorithm Time Complexity Visualization and Scalability Analysis**
+## PerfGraph: **Algorithm Time Complexity Visualization and Scalability Analysis**
 
-#### **Objective:**
+### Objective:
 - The project helps to visualise the effect of apllication logic on end to end latency and scalability of the application using Grafana.
 
-#### **Components:**
-
+### Components:
 1. **k8s Setup:**
    - Use `kind` (or `k3ds`, `minikube` etc) to create a local Kubernetes cluster, providing a controlled environment for deploying the app.
 
@@ -18,3 +17,14 @@
      - "N" used for execution of algo
    - ***Grafana*** dashboard to visualize the collected metrics -
      - Execution time of each algorithm wrt "N"
+
+### Internals
+
+### Tools Used:
+- `rye` for package management for Python
+- `prometheus` for metrics capturing and exporting
+- `grafana` for metrics dashboarding and visualisation
+
+### Testing Steps
+- Follow the below steps to get it up and running:- 
+  - TODO: Add Steps
