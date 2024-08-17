@@ -1,9 +1,9 @@
 [project]
 name = "perfgraph"
 version = "0.1.0"
-description = "Add your description here"
+description = "Algorithm Time Complexity Visualization and Scalability Analysis"
 authors = [
-    { name = "Harshit", email = "hkhurana3@gmail.com" }
+    { name = "Harshit", email = "hkhurana3[at]gmail[dot]com" }
 ]
 dependencies = [
     "prometheus-client>=0.20.0",
