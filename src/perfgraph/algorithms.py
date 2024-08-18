@@ -7,7 +7,7 @@ from itertools import permutations
 import functools
 from perfgraph.metrics_helper import Metrics
 
-TRIAL_COUNT = 5
+TRIAL_COUNT = 1
 metrics = Metrics()
 
 def capture_metrics(function):
@@ -80,7 +80,7 @@ def nlogn_time(input_list: list[int]):
             heapify(arr, i, 0)
         return arr
     
-    heap_sort(input_list)
+    heap_sort(list(input_list))
 
 @capture_metrics
 def quadratic_time(input_list: list[int]):

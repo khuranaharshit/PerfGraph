@@ -15,7 +15,7 @@ class Metrics:
 
     @contextmanager
     def measure(self, algo_name: str, labels: dict[str, int]):
-        fname = f"{algo_name}_duration_ms"
+        fname = f"{algo_name}_duration_millis"
         if fname not in self.registered_histograms:
             self.registered_histograms[fname] = Histogram(
                     name=fname,

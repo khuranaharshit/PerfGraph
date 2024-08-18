@@ -8,6 +8,51 @@ APP_PORT = os.environ.get("APP_PORT", 8000)
 
 app = FastAPI()
 
+array = [2,
+6,
+8,
+9,
+10,
+10,
+11,
+100,
+100,
+100,
+100,
+100,
+1000,
+1000,
+1000,
+1000,
+1000,
+5000,
+10000,
+10000,
+10000,
+10000,
+10000,
+100000,
+100000,
+100000,
+100000,
+200000,
+200000,
+200000,
+500000,
+500000,
+500000,
+1000000,
+1000000,
+1000000,
+10000000,
+10000000,
+100000000,
+100000000,
+500000000,
+1000000000]
+
+array_dict = {elem: list(range(elem)) if elem <= 100_000 else range(elem) for elem in array}
+
 @app.get("/")
 def redirect_root():
     return RedirectResponse(url="/home")
@@ -15,7 +60,7 @@ def redirect_root():
 def execute_algorithm(algorithm, array_sizes, description):
     count = 0
     for array_size in array_sizes:
-        array = list(range(array_size))
+        array = array_dict.get(array_size)
         algorithm(array)
         count += 1
 
