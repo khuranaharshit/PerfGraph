@@ -15,7 +15,7 @@ def capture_metrics(function):
     @functools.wraps(function)
     def wrapper(array):
         for _ in range(TRIAL_COUNT):
-            with metrics.measure(function.__name__, labels={"array_size": len(array)}):
+            with metrics.measure(function.__name__, labels={"nsize": len(array)}):
                 function(array)
         return
     return wrapper
@@ -85,7 +85,7 @@ def nlogn_time(input_list: list[int]):
 @capture_metrics
 def quadratic_time(input_list: list[int]):
     for i in range(len(input_list)):
-        for j in range(len(input_list)):
+        for j in range(i+1, len(input_list)):
             i + j
 
 @capture_metrics
@@ -93,5 +93,4 @@ def factorial_time(input_list: list[int]):
     """
     Generate all permutations of the input list.
     """
-    assert len(input_list) <= 10, "Skipping! Cannot handle > 10"
     list(permutations(input_list))

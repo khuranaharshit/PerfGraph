@@ -1,9 +1,10 @@
-from typing import Union
+import os
 from perfgraph.algorithms import *
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, HTMLResponse
-from fastapi.staticfiles import StaticFiles
 import uvicorn
+
+APP_PORT = os.environ.get("APP_PORT", 8000)
 
 app = FastAPI()
 
@@ -22,32 +23,32 @@ def execute_algorithm(algorithm, array_sizes, description):
 
 @app.get("/constant_time")
 def read_constant_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 1_000_000]
+    nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000, 10_000_000, 100_000_000, 1_000_000_000]
     return HTMLResponse(content=execute_algorithm(constant_time, nsizes, "Constant time algorithm"))
 
 @app.get("/logn_time")
 def read_logn_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 1_000_000]
+    nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000, 10_000_000, 100_000_000, 500_000_000]
     return HTMLResponse(content=execute_algorithm(logn_time, nsizes, "Logarithmic time algorithm"))
 
 @app.get("/linear_time")
 def read_linear_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 1_000_000]
+    nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000]
     return HTMLResponse(content=execute_algorithm(linear_time, nsizes, "Linear time algorithm"))
 
 @app.get("/nlogn_time")
 def read_nlogn_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 1_000_000]
+    nsizes = [100, 1_000, 10_000, 100_000]
     return HTMLResponse(content=execute_algorithm(nlogn_time, nsizes, "NLogN time algorithm"))
 
 @app.get("/quadratic_time")
 def read_quadratic_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 1_000_000]
+    nsizes = [10, 100, 1_000, 5_000, 10_000]
     return HTMLResponse(content=execute_algorithm(quadratic_time, nsizes, "Quadratic time algorithm"))
 
 @app.get("/factorial_time")
 def read_factorial_time():
-    nsizes = [2, 4, 6, 8, 10]
+    nsizes = [2, 6, 8, 9, 10, 11]
     return HTMLResponse(content=execute_algorithm(factorial_time, nsizes, "Factorial time algorithm"))
 
 @app.get("/home")
@@ -72,5 +73,4 @@ def read_home():
     return HTMLResponse(content=links)
 
 if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=APP_PORT)

@@ -1,7 +1,7 @@
 ## PerfGraph: **Algorithm Time Complexity Visualization and Scalability Analysis**
 
 ### Objective:
-- The project helps to visualise the effect of apllication logic on end to end latency and scalability of the application using Grafana.
+- The project helps to visualise the effect of application logic on end to end latency and scalability of the application using Grafana.
 
 ### Components:
 1. **k8s Setup:**
@@ -28,3 +28,9 @@
 ### Testing Steps
 - Follow the below steps to get it up and running:- 
   - TODO: Add Steps
+
+### Temp Steps
+- Run Prometheus
+   `docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus`
+- Run Grafana
+   `brew services start grafana`
