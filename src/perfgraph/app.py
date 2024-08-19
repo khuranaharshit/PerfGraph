@@ -8,54 +8,60 @@ APP_PORT = os.environ.get("APP_PORT", 8000)
 
 app = FastAPI()
 
-array = [2,
-6,
-8,
-9,
-10,
-10,
-11,
-100,
-100,
-100,
-100,
-100,
-1000,
-1000,
-1000,
-1000,
-1000,
-5000,
-10000,
-10000,
-10000,
-10000,
-10000,
-100000,
-100000,
-100000,
-100000,
-200000,
-200000,
-200000,
-500000,
-500000,
-500000,
-1000000,
-1000000,
-1000000,
-10000000,
-10000000,
-100000000,
-100000000,
-500000000,
-1000000000]
+array = [
+    2,
+    6,
+    8,
+    9,
+    10,
+    10,
+    11,
+    100,
+    100,
+    100,
+    100,
+    100,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    5000,
+    10000,
+    10000,
+    10000,
+    10000,
+    10000,
+    100000,
+    100000,
+    100000,
+    100000,
+    200000,
+    200000,
+    200000,
+    500000,
+    500000,
+    500000,
+    1000000,
+    1000000,
+    1000000,
+    10000000,
+    10000000,
+    100000000,
+    100000000,
+    500000000,
+    1000000000,
+]
 
-array_dict = {elem: list(range(elem)) if elem <= 100_000 else range(elem) for elem in array}
+array_dict = {
+    elem: list(range(elem)) if elem <= 100_000 else range(elem) for elem in array
+}
+
 
 @app.get("/")
 def redirect_root():
     return RedirectResponse(url="/home")
+
 
 def execute_algorithm(algorithm, array_sizes, description):
     count = 0
@@ -66,35 +72,76 @@ def execute_algorithm(algorithm, array_sizes, description):
 
     return f"<html>Executed {description} {count} times</html>"
 
+
 @app.get("/constant_time")
 def read_constant_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000, 10_000_000, 100_000_000, 1_000_000_000]
-    return HTMLResponse(content=execute_algorithm(constant_time, nsizes, "Constant time algorithm"))
+    nsizes = [
+        100,
+        1_000,
+        10_000,
+        100_000,
+        200_000,
+        500_000,
+        1_000_000,
+        10_000_000,
+        100_000_000,
+        1_000_000_000,
+    ]
+    return HTMLResponse(
+        content=execute_algorithm(constant_time, nsizes, "Constant time algorithm")
+    )
+
 
 @app.get("/logn_time")
 def read_logn_time():
-    nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000, 10_000_000, 100_000_000, 500_000_000]
-    return HTMLResponse(content=execute_algorithm(logn_time, nsizes, "Logarithmic time algorithm"))
+    nsizes = [
+        100,
+        1_000,
+        10_000,
+        100_000,
+        200_000,
+        500_000,
+        1_000_000,
+        10_000_000,
+        100_000_000,
+        500_000_000,
+    ]
+    return HTMLResponse(
+        content=execute_algorithm(logn_time, nsizes, "Logarithmic time algorithm")
+    )
+
 
 @app.get("/linear_time")
 def read_linear_time():
     nsizes = [100, 1_000, 10_000, 100_000, 200_000, 500_000, 1_000_000]
-    return HTMLResponse(content=execute_algorithm(linear_time, nsizes, "Linear time algorithm"))
+    return HTMLResponse(
+        content=execute_algorithm(linear_time, nsizes, "Linear time algorithm")
+    )
+
 
 @app.get("/nlogn_time")
 def read_nlogn_time():
     nsizes = [100, 1_000, 10_000, 100_000]
-    return HTMLResponse(content=execute_algorithm(nlogn_time, nsizes, "NLogN time algorithm"))
+    return HTMLResponse(
+        content=execute_algorithm(nlogn_time, nsizes, "NLogN time algorithm")
+    )
+
 
 @app.get("/quadratic_time")
 def read_quadratic_time():
     nsizes = [10, 100, 1_000, 5_000, 10_000]
-    return HTMLResponse(content=execute_algorithm(quadratic_time, nsizes, "Quadratic time algorithm"))
+    return HTMLResponse(
+        content=execute_algorithm(quadratic_time, nsizes, "Quadratic time algorithm")
+    )
+
 
 @app.get("/factorial_time")
 def read_factorial_time():
     nsizes = [2, 6, 8, 9, 10, 11]
-    return HTMLResponse(content=execute_algorithm(factorial_time, nsizes, "Factorial time algorithm"))
+    return HTMLResponse(
+        content=execute_algorithm(factorial_time, nsizes, "Factorial time algorithm")
+    )
+
 
 @app.get("/home")
 def read_home():
@@ -117,5 +164,6 @@ def read_home():
     """
     return HTMLResponse(content=links)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=APP_PORT)
