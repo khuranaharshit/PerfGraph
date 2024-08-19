@@ -1,5 +1,7 @@
 ## PerfGraph: **Algorithm Time Complexity Visualization and Scalability Analysis**
 
+![Demo](./demo.mov)
+
 ### Objective:
 - The project helps to visualise the effect of application logic on end to end latency and scalability of the application using Grafana.
 
